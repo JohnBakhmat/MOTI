@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MOTI", "MOTI\MOTI.csproj", "{A80850CC-5796-472C-A837-F3899182DEAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A80850CC-5796-472C-A837-F3899182DEAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A80850CC-5796-472C-A837-F3899182DEAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A80850CC-5796-472C-A837-F3899182DEAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A80850CC-5796-472C-A837-F3899182DEAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
