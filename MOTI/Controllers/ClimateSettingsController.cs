@@ -10,22 +10,23 @@ using MOTI.Models;
 
 namespace MOTI.Controllers
 {
-    public class PresetController : Controller
+    public class ClimateSettingsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public PresetController(ApplicationDbContext context)
+        public ClimateSettingsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Preset
+        // GET: ClimateSettings
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Presets.ToListAsync());
+            var applicationDbContext = _context.ClimateSettings.Include(c => c.Request);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Preset/Details/5
+        // GET: ClimateSettings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace MOTI.Controllers
                 return NotFound();
             }
 
-            var preset = await _context.Presets
-                .FirstOrDefaultAsync(m => m.PresetId == id);
-            if (preset == null)
+            var climateSetting = await _context.ClimateSettings
+                .Include(c => c.Request)
+                .FirstOrDefaultAsync(m => m.ClimateSettingId == id);
+            if (climateSetting == null)
             {
                 return NotFound();
             }
 
-            return View(preset);
+            return View(climateSetting);
         }
 
-        // GET: Preset/Create
+        // GET: ClimateSettings/Create
         public IActionResult Create()
         {
+            ViewData["RequestId"] = new SelectList(_context.Requests, "RequestId", "RequestId");
             return View();
         }
 
-        // POST: Preset/Create
+        // POST: ClimateSettings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PresetId,Title")] Preset preset)
+        public async Task<IActionResult> Create([Bind("ClimateSettingId,ClimateType,Value,Units,RequestId")] ClimateSetting climateSetting)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(preset);
+                _context.Add(climateSetting);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(preset);
+            ViewData["RequestId"] = new SelectList(_context.Requests, "RequestId", "RequestId", climateSetting.RequestId);
+            return View(climateSetting);
         }
 
-        // GET: Preset/Edit/5
+        // GET: ClimateSettings/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace MOTI.Controllers
                 return NotFound();
             }
 
-            var preset = await _context.Presets.FindAsync(id);
-            if (preset == null)
+            var climateSetting = await _context.ClimateSettings.FindAsync(id);
+            if (climateSetting == null)
             {
                 return NotFound();
             }
-            return View(preset);
+            ViewData["RequestId"] = new SelectList(_context.Requests, "RequestId", "RequestId", climateSetting.RequestId);
+            return View(climateSetting);
         }
 
-        // POST: Preset/Edit/5
+        // POST: ClimateSettings/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PresetId,Title")] Preset preset)
+        public async Task<IActionResult> Edit(int id, [Bind("ClimateSettingId,ClimateType,Value,Units,RequestId")] ClimateSetting climateSetting)
         {
-            if (id != preset.PresetId)
+            if (id != climateSetting.ClimateSettingId)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace MOTI.Controllers
             {
                 try
                 {
-                    _context.Update(preset);
+                    _context.Update(climateSetting);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PresetExists(preset.PresetId))
+                    if (!ClimateSettingExists(climateSetting.ClimateSettingId))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace MOTI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(preset);
+            ViewData["RequestId"] = new SelectList(_context.Requests, "RequestId", "RequestId", climateSetting.RequestId);
+            return View(climateSetting);
         }
 
-        // GET: Preset/Delete/5
+        // GET: ClimateSettings/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace MOTI.Controllers
                 return NotFound();
             }
 
-            var preset = await _context.Presets
-                .FirstOrDefaultAsync(m => m.PresetId == id);
-            if (preset == null)
+            var climateSetting = await _context.ClimateSettings
+                .Include(c => c.Request)
+                .FirstOrDefaultAsync(m => m.ClimateSettingId == id);
+            if (climateSetting == null)
             {
                 return NotFound();
             }
 
-            return View(preset);
+            return View(climateSetting);
         }
 
-        // POST: Preset/Delete/5
+        // POST: ClimateSettings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var preset = await _context.Presets.FindAsync(id);
-            _context.Presets.Remove(preset);
+            var climateSetting = await _context.ClimateSettings.FindAsync(id);
+            _context.ClimateSettings.Remove(climateSetting);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PresetExists(int id)
+        private bool ClimateSettingExists(int id)
         {
-            return _context.Presets.Any(e => e.PresetId == id);
+            return _context.ClimateSettings.Any(e => e.ClimateSettingId == id);
         }
     }
 }

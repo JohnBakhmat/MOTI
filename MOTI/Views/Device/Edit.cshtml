@@ -1,7 +1,8 @@
-﻿@model MOTI.Models.Device
+@model MOTI.Models.Device
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Edit</h1>
@@ -14,19 +15,24 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="DeviceId" />
             <div class="form-group">
+                <label asp-for="RoomId" class="control-label"></label>
+                <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
+                <span asp-validation-for="RoomId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="SerialNumber" class="control-label"></label>
                 <input asp-for="SerialNumber" class="form-control" />
                 <span asp-validation-for="SerialNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Power" class="control-label"></label>
-                <input asp-for="Power" class="form-control" />
-                <span asp-validation-for="Power" class="text-danger"></span>
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsWorking" /> @Html.DisplayNameFor(model => model.IsWorking)
-                </label>
+            <div class="form-group">
+                <label asp-for="ClimateType" class="control-label"></label>
+                <select asp-for="ClimateType" class="form-control"></select>
+                <span asp-validation-for="ClimateType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

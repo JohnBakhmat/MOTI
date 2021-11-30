@@ -15,44 +15,44 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = D:\Projects\MOTI\MOTI
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Projects/MOTI/MOTI/Views/ClimateSetting/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdcQ3JlYXRlLmNzaHRtbA==
+[D:/Projects/MOTI/MOTI/Views/ClimateSettings/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/ClimateSetting/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdcRGVsZXRlLmNzaHRtbA==
+[D:/Projects/MOTI/MOTI/Views/ClimateSettings/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/ClimateSetting/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdcRGV0YWlscy5jc2h0bWw=
+[D:/Projects/MOTI/MOTI/Views/ClimateSettings/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/ClimateSetting/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdcRWRpdC5jc2h0bWw=
+[D:/Projects/MOTI/MOTI/Views/ClimateSettings/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/ClimateSetting/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdcSW5kZXguY3NodG1s
+[D:/Projects/MOTI/MOTI/Views/ClimateSettings/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpbWF0ZVNldHRpbmdzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Devices/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlc1xDcmVhdGUuY3NodG1s
+[D:/Projects/MOTI/MOTI/Views/Device/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Devices/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlc1xEZWxldGUuY3NodG1s
+[D:/Projects/MOTI/MOTI/Views/Device/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Devices/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlc1xEZXRhaWxzLmNzaHRtbA==
+[D:/Projects/MOTI/MOTI/Views/Device/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Devices/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlc1xFZGl0LmNzaHRtbA==
+[D:/Projects/MOTI/MOTI/Views/Device/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Devices/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlc1xJbmRleC5jc2h0bWw=
+[D:/Projects/MOTI/MOTI/Views/Device/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV2aWNlXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projects/MOTI/MOTI/Views/Home/Index.cshtml]
@@ -63,24 +63,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Preset/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJlc2V0XENyZWF0ZS5jc2h0bWw=
+[D:/Projects/MOTI/MOTI/Views/Request/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Preset/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJlc2V0XERlbGV0ZS5jc2h0bWw=
+[D:/Projects/MOTI/MOTI/Views/Request/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Preset/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJlc2V0XERldGFpbHMuY3NodG1s
+[D:/Projects/MOTI/MOTI/Views/Request/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Preset/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJlc2V0XEVkaXQuY3NodG1s
+[D:/Projects/MOTI/MOTI/Views/Request/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Projects/MOTI/MOTI/Views/Preset/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJlc2V0XEluZGV4LmNzaHRtbA==
+[D:/Projects/MOTI/MOTI/Views/Request/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVxdWVzdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projects/MOTI/MOTI/Views/Room/Create.cshtml]

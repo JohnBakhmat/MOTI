@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,24 +8,25 @@ using Microsoft.EntityFrameworkCore;
 using MOTI.Data;
 using MOTI.Models;
 
-namespace MOTI
+namespace MOTI.Controllers
 {
-    public class DevicesController : Controller
+    public class RequestController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public DevicesController(ApplicationDbContext context)
+        public RequestController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Devices
+        // GET: Request
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Devices.ToListAsync());
+            var applicationDbContext = _context.Requests.Include(r => r.Room);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Devices/Details/5
+        // GET: Request/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace MOTI
                 return NotFound();
             }
 
-            var device = await _context.Devices
-                .FirstOrDefaultAsync(m => m.DeviceId == id);
-            if (device == null)
+            var request = await _context.Requests
+                .Include(r => r.Room)
+                .FirstOrDefaultAsync(m => m.RequestId == id);
+            if (request == null)
             {
                 return NotFound();
             }
 
-            return View(device);
+            return View(request);
         }
 
-        // GET: Devices/Create
+        // GET: Request/Create
         public IActionResult Create()
         {
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
             return View();
         }
 
-        // POST: Devices/Create
+        // POST: Request/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DeviceId,SerialNumber,Power,IsWorking")] Device device)
+        public async Task<IActionResult> Create([Bind("RequestId,DateTime,Status,RoomId")] Request request)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(device);
+                _context.Add(request);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(device);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", request.RoomId);
+            return View(request);
         }
 
-        // GET: Devices/Edit/5
+        // GET: Request/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace MOTI
                 return NotFound();
             }
 
-            var device = await _context.Devices.FindAsync(id);
-            if (device == null)
+            var request = await _context.Requests.FindAsync(id);
+            if (request == null)
             {
                 return NotFound();
             }
-            return View(device);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", request.RoomId);
+            return View(request);
         }
 
-        // POST: Devices/Edit/5
+        // POST: Request/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DeviceId,SerialNumber,Power,IsWorking")] Device device)
+        public async Task<IActionResult> Edit(int id, [Bind("RequestId,DateTime,Status,RoomId")] Request request)
         {
-            if (id != device.DeviceId)
+            if (id != request.RequestId)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace MOTI
             {
                 try
                 {
-                    _context.Update(device);
+                    _context.Update(request);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!DeviceExists(device.DeviceId))
+                    if (!RequestExists(request.RequestId))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace MOTI
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(device);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", request.RoomId);
+            return View(request);
         }
 
-        // GET: Devices/Delete/5
+        // GET: Request/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace MOTI
                 return NotFound();
             }
 
-            var device = await _context.Devices
-                .FirstOrDefaultAsync(m => m.DeviceId == id);
-            if (device == null)
+            var request = await _context.Requests
+                .Include(r => r.Room)
+                .FirstOrDefaultAsync(m => m.RequestId == id);
+            if (request == null)
             {
                 return NotFound();
             }
 
-            return View(device);
+            return View(request);
         }
 
-        // POST: Devices/Delete/5
+        // POST: Request/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var device = await _context.Devices.FindAsync(id);
-            _context.Devices.Remove(device);
+            var request = await _context.Requests.FindAsync(id);
+            _context.Requests.Remove(request);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool DeviceExists(int id)
+        private bool RequestExists(int id)
         {
-            return _context.Devices.Any(e => e.DeviceId == id);
+            return _context.Requests.Any(e => e.RequestId == id);
         }
     }
 }

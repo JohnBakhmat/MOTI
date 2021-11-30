@@ -1,7 +1,8 @@
-﻿@model IEnumerable<MOTI.Models.Device>
+@model IEnumerable<MOTI.Models.Device>
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -13,13 +14,16 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Room)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.SerialNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Power)
+                @Html.DisplayNameFor(model => model.Capacity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsWorking)
+                @Html.DisplayNameFor(model => model.ClimateType)
             </th>
             <th></th>
         </tr>
@@ -28,13 +32,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Room.RoomId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.SerialNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Power)
+                @Html.DisplayFor(modelItem => item.Capacity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IsWorking)
+                @Html.DisplayFor(modelItem => item.ClimateType)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.DeviceId">Edit</a> |

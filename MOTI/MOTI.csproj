@@ -19,4 +19,27 @@
       <PackageReference Include="SQLite" Version="3.13.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Room\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Room\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Room\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Room\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Room\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Preset\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Preset\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Preset\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Preset\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Preset\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Devices\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Devices\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Devices\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Devices\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Devices\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ClimateSetting\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ClimateSetting\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ClimateSetting\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ClimateSetting\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\ClimateSetting\Index.cshtml" />
+    </ItemGroup>
+
 </Project>

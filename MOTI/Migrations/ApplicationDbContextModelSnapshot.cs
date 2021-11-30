@@ -23,10 +23,10 @@ namespace MOTI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Expression")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("ClimateType")
+                        .HasColumnType("INTEGER");
 
-                    b.Property<int?>("PresetId")
+                    b.Property<int>("RequestId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Units")
@@ -37,7 +37,7 @@ namespace MOTI.Migrations
 
                     b.HasKey("ClimateSettingId");
 
-                    b.HasIndex("PresetId");
+                    b.HasIndex("RequestId");
 
                     b.ToTable("ClimateSettings");
                 });
@@ -48,13 +48,13 @@ namespace MOTI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("IsWorking")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("Power")
+                    b.Property<double>("Capacity")
                         .HasColumnType("REAL");
 
-                    b.Property<int?>("RoomId")
+                    b.Property<int>("ClimateType")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("RoomId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("SerialNumber")
@@ -67,18 +67,26 @@ namespace MOTI.Migrations
                     b.ToTable("Devices");
                 });
 
-            modelBuilder.Entity("MOTI.Models.Preset", b =>
+            modelBuilder.Entity("MOTI.Models.Request", b =>
                 {
-                    b.Property<int>("PresetId")
+                    b.Property<int>("RequestId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Title")
+                    b.Property<DateTime>("DateTime")
                         .HasColumnType("TEXT");
 
-                    b.HasKey("PresetId");
+                    b.Property<int>("RoomId")
+                        .HasColumnType("INTEGER");
 
-                    b.ToTable("Presets");
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("RequestId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("MOTI.Models.Room", b =>
@@ -100,26 +108,47 @@ namespace MOTI.Migrations
 
             modelBuilder.Entity("MOTI.Models.ClimateSetting", b =>
                 {
-                    b.HasOne("MOTI.Models.Preset", null)
-                        .WithMany("Settings")
-                        .HasForeignKey("PresetId");
+                    b.HasOne("MOTI.Models.Request", "Request")
+                        .WithMany("ClimateSettings")
+                        .HasForeignKey("RequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Request");
                 });
 
             modelBuilder.Entity("MOTI.Models.Device", b =>
                 {
-                    b.HasOne("MOTI.Models.Room", null)
+                    b.HasOne("MOTI.Models.Room", "Room")
                         .WithMany("Devices")
-                        .HasForeignKey("RoomId");
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("MOTI.Models.Preset", b =>
+            modelBuilder.Entity("MOTI.Models.Request", b =>
                 {
-                    b.Navigation("Settings");
+                    b.HasOne("MOTI.Models.Room", "Room")
+                        .WithMany("Requests")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("MOTI.Models.Request", b =>
+                {
+                    b.Navigation("ClimateSettings");
                 });
 
             modelBuilder.Entity("MOTI.Models.Room", b =>
                 {
                     b.Navigation("Devices");
+
+                    b.Navigation("Requests");
                 });
 #pragma warning restore 612, 618
         }

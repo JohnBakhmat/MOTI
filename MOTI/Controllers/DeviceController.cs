@@ -10,22 +10,23 @@ using MOTI.Models;
 
 namespace MOTI.Controllers
 {
-    public class ClimateSettingController : Controller
+    public class DeviceController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public ClimateSettingController(ApplicationDbContext context)
+        public DeviceController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: ClimateSetting
+        // GET: Device
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ClimateSettings.ToListAsync());
+            var applicationDbContext = _context.Devices.Include(d => d.Room);
+            return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: ClimateSetting/Details/5
+        // GET: Device/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +34,42 @@ namespace MOTI.Controllers
                 return NotFound();
             }
 
-            var climateSetting = await _context.ClimateSettings
-                .FirstOrDefaultAsync(m => m.ClimateSettingId == id);
-            if (climateSetting == null)
+            var device = await _context.Devices
+                .Include(d => d.Room)
+                .FirstOrDefaultAsync(m => m.DeviceId == id);
+            if (device == null)
             {
                 return NotFound();
             }
 
-            return View(climateSetting);
+            return View(device);
         }
 
-        // GET: ClimateSetting/Create
+        // GET: Device/Create
         public IActionResult Create()
         {
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId");
             return View();
         }
 
-        // POST: ClimateSetting/Create
+        // POST: Device/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ClimateSettingId,Expression,Value,Units")] ClimateSetting climateSetting)
+        public async Task<IActionResult> Create([Bind("DeviceId,RoomId,SerialNumber,Capacity,ClimateType")] Device device)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(climateSetting);
+                _context.Add(device);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(climateSetting);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", device.RoomId);
+            return View(device);
         }
 
-        // GET: ClimateSetting/Edit/5
+        // GET: Device/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +77,23 @@ namespace MOTI.Controllers
                 return NotFound();
             }
 
-            var climateSetting = await _context.ClimateSettings.FindAsync(id);
-            if (climateSetting == null)
+            var device = await _context.Devices.FindAsync(id);
+            if (device == null)
             {
                 return NotFound();
             }
-            return View(climateSetting);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", device.RoomId);
+            return View(device);
         }
 
-        // POST: ClimateSetting/Edit/5
+        // POST: Device/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ClimateSettingId,Expression,Value,Units")] ClimateSetting climateSetting)
+        public async Task<IActionResult> Edit(int id, [Bind("DeviceId,RoomId,SerialNumber,Capacity,ClimateType")] Device device)
         {
-            if (id != climateSetting.ClimateSettingId)
+            if (id != device.DeviceId)
             {
                 return NotFound();
             }
@@ -97,12 +102,12 @@ namespace MOTI.Controllers
             {
                 try
                 {
-                    _context.Update(climateSetting);
+                    _context.Update(device);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClimateSettingExists(climateSetting.ClimateSettingId))
+                    if (!DeviceExists(device.DeviceId))
                     {
                         return NotFound();
                     }
@@ -113,10 +118,11 @@ namespace MOTI.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(climateSetting);
+            ViewData["RoomId"] = new SelectList(_context.Rooms, "RoomId", "RoomId", device.RoomId);
+            return View(device);
         }
 
-        // GET: ClimateSetting/Delete/5
+        // GET: Device/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +130,31 @@ namespace MOTI.Controllers
                 return NotFound();
             }
 
-            var climateSetting = await _context.ClimateSettings
-                .FirstOrDefaultAsync(m => m.ClimateSettingId == id);
-            if (climateSetting == null)
+            var device = await _context.Devices
+                .Include(d => d.Room)
+                .FirstOrDefaultAsync(m => m.DeviceId == id);
+            if (device == null)
             {
                 return NotFound();
             }
 
-            return View(climateSetting);
+            return View(device);
         }
 
-        // POST: ClimateSetting/Delete/5
+        // POST: Device/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var climateSetting = await _context.ClimateSettings.FindAsync(id);
-            _context.ClimateSettings.Remove(climateSetting);
+            var device = await _context.Devices.FindAsync(id);
+            _context.Devices.Remove(device);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ClimateSettingExists(int id)
+        private bool DeviceExists(int id)
         {
-            return _context.ClimateSettings.Any(e => e.ClimateSettingId == id);
+            return _context.Devices.Any(e => e.DeviceId == id);
         }
     }
 }
