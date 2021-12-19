@@ -1,18 +1,53 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@{
+    <style>
+        .card{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        background: #73c7ff;
+        padding: 20px;
+        border-radius: 20px;
+        transition: all ease-in-out 200ms;
+        cursor: pointer;
+        }
+        .card:hover{
+            transform: scale(1.1);
+        }
+        a, a:hover {
+            color: black;
+        }
+    </style>
+}
 <div
-    class = "text-center">
-    <h1
-        class = "display-4">
-        Welcome
-    </h1>
-    <p>
-        Learn about
-        <a
-            href = "https://docs.microsoft.com/aspnet/core">
-            building Web apps with ASP.NET Core
-        </a>.
-    </p>
+    style = "display: grid; grid-template-columns: repeat(2,1fr); gap: 40px">
+    <a
+        href="/Room"
+        class = "card" >
+        <h1>Rooms</h1>
+    </a>
+    <a
+        href="/Device"
+        class = "card">
+        <h1>Devices</h1>
+    </a>
+    <a
+        href="/Request"
+        class = "card">
+        <h1>Requests</h1>
+    </a>
+    <a
+        href="/ClimateSettings"
+        class = "card">
+        <h1>Climate Settings</h1>
+    </a>
+    <a
+        href="/Greedy"
+        class = "card"
+        style = "grid-column-start: 1; grid-column-end: 3; background: #000; color: white">
+        <h1>Greedy algorythm</h1>
+    </a>
+
 </div>

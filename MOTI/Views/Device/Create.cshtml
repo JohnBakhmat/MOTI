@@ -1,3 +1,4 @@
+@using MOTI.Models.Enums
 @model MOTI.Models.Device
 
 @{
@@ -23,13 +24,17 @@
                 <span asp-validation-for="SerialNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Capacity" class="control-label"></label>
-                <input asp-for="Capacity" class="form-control" />
+                <label asp-for="Capacity" class="control-label">Capacity (Power/Minute)</label>
+                <input type="number" step="0.01" value="0" asp-for="Capacity" class="form-control" />
                 <span asp-validation-for="Capacity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ClimateType" class="control-label"></label>
-                <select asp-for="ClimateType" class="form-control"></select>
+                <select
+                    asp-for = "ClimateType"
+                    class = "form-control" asp-items="Html.GetEnumSelectList<ClimateType>()">
+                    <option selected="selected" value="-1">Please select</option>
+                </select>
                 <span asp-validation-for="ClimateType" class="text-danger"></span>
             </div>
             <div class="form-group">

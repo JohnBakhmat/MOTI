@@ -13,7 +13,7 @@ namespace MOTI.Models {
         public DateTime DateTime { get; set; }
         public StatusType Status { get; set; }
         public ICollection<ClimateSetting> ClimateSettings { get; set; } = new List<ClimateSetting>();
-
+        public double MaxTime { get; set; }
         [ForeignKey("RoomId")]
         public Room Room { get; set; }
         public int RoomId { get; set; }
