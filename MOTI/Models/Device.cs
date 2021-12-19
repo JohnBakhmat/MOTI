@@ -12,9 +12,11 @@ namespace MOTI.Models {
         
         [ForeignKey("RoomId")]
         public Room Room { get; set; }
+        
         public string SerialNumber { get; set; }
         public double Capacity { get; set; }
         public ClimateType ClimateType { get; set; }
+        public double Consumption { get; set; }
     }
 
     public enum DeviceStatus {
